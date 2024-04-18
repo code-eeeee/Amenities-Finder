@@ -1,0 +1,520 @@
+<Controller>
+    resturarnt_checkbox: resturarnt_checkbox
+    retail_checkbox: retail_checkbox
+    church: church
+    social_facility: social_facility
+    clothes_checkbox: clothes_checkbox
+    class_1: class_1
+    class_2: class_2
+    label_1: label_1
+    label_2: label_2
+    map_view: map_view
+    info: info
+    distance_picker: distance_picker
+    control_panel: control_panel
+    pb: pb
+    close: close
+    status: status
+    opener: opener
+    indicator: indicator
+    loadingscreen: loadingscreen
+    mapscreen: mapscreen
+    screenmanager: screenmanager
+    latitude: latitude
+    longitude: longitude
+    errormessage: errormessage
+    text_input: text_input
+    size_data: size_data
+    locator: locator
+    address: address
+    min: min
+    max: max
+    range: range
+
+    ScreenManager:
+        id: screenmanager
+      
+
+
+        Screen:
+            name: "screen1"
+            FloatLayout:
+                id: loadingscreen
+                opacity: 1
+                canvas.before:
+                    Color:
+                        rgba: 245/255, 211/255, 119/255, 1   
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    pos_hint: {"center_x": .5, "center_y": .7}
+                    text: "Welcome to Hunter!"
+                    font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                    font_size:'100sp'
+                BoxLayout:
+                    orientation: "vertical"
+                    size_hint: (.2,.4)
+                    pos_hint: {"center_x": .5, "center_y": .4}
+                    Button:
+                        text: "Map"
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        on_press: root.menu_selector("screen2")
+                        font_size:'55sp'
+                        canvas.before:
+                            Color:
+                                rgba: 245/255, 211/255, 119/255, 1   
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        size_hint: (None,.3)
+                    Button:
+                        text: "Settings"
+                        font_size:'55sp'
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        on_press: root.menu_selector("screen3")
+                        canvas.before:
+                            Color:
+                                rgba: 245/255, 211/255, 119/255, 1   
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+
+                    Label:
+                        size_hint: (None,.3)
+                    Button:
+                        text: "Help"
+                        font_size:'55sp'
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        on_press: root.menu_selector("screen4")
+                        canvas.before:
+                            Color:
+                                rgba: 245/255, 211/255, 119/255, 1   
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    Label:
+                        size_hint: (None,.3)
+                    Label: 
+                        text: "Credits to OpenStreetMap!"
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        font_size:'30sp'
+
+      
+
+
+                        
+        Screen:
+            name: "screen3"
+            FloatLayout:
+                canvas.before:
+                    Color:
+                        rgba: 245/255, 211/255, 119/255, 1   
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Button:
+                    size_hint: (.05,.08)
+                    pos_hint: {"top": 1, "right": .05}
+                    text: "Back"
+                    font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                    halign: "center"
+                    font_size:'25sp'
+                    on_press: root.menu_selector("screen1")
+                BoxLayout:
+                    orientation: "vertical"
+                    size_hint: (.5,.4)
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    Label:
+                        text: "Hit Enter to Register"
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        font_size:'50sp'
+                    GridLayout:
+                        
+                        cols: 2
+                        Label:
+                            font_size:'50sp'
+                            text: "Location:"
+                            font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        BoxLayout: 
+                            TextInput:
+                                id: latitude
+                                multiline: False
+                                hint_text: "Latitude"
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                on_text_validate: root.location("latitude")
+                                font_size: "30sp"
+                                halign: "center"
+                                valign: 'middle'
+                            TextInput:
+                                id: longitude
+                                multiline: False
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                on_text_validate: root.location("longitude")
+                                hint_text: "Longitude"
+                                font_size: "30sp"
+                                halign: "center"
+                                valign: 'middle'
+                                text_size: "100sp"
+                        Label:
+                            font_size:'50sp'
+                            text: "Number of Results:"
+                            font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        TextInput:
+                            id: text_input
+                            multiline: False
+                            halign: "center"
+                            valign: 'middle'
+                            font_size: "30sp"
+                            hint_text: "1,2,etc."
+                            on_text_validate: root.location("text_input")
+                            font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        Label:
+                            font_size:'50sp'
+                            text: "Distance Range:"
+                            font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        BoxLayout: 
+                            TextInput:
+                                id: min
+                                multiline: False
+                                hint_text: "0,100,etc."
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                on_text_validate: root.location("min")
+                                font_size: "30sp"
+                                halign: "center"
+                                valign: 'middle'
+                            TextInput:
+                                id: max
+                                multiline: False
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                on_text_validate: root.location("max")
+                                hint_text: "1000,5000,etc."
+                                font_size: "30sp"
+                                halign: "center"
+                                valign: 'middle'
+                                text_size: "100sp"
+
+                        
+
+        Screen:
+            name: "screen2"
+            FloatLayout:
+                id: mapscreen
+                MapView:
+                    id: map_view
+                    zoom: 4
+                Button:
+                    id:locator
+                    pos_hint: {"x": 0, "y":0}
+                    size_hint: (.1,.05)
+                    on_press: root.insert()
+                    font_size: '35sp'
+                    font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                    text: "Change Location"
+
+                TextInput:
+                    id: address
+                    opacity: 0
+                    pos_hint: {"center_x": -.5, "center_y":0.5}
+                    size_hint: (.5,.4)
+                    font_size: '35sp'
+                    multiline: False
+                    font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                    on_text_validate: root.process_address(self.text)
+                    hint_text: "1600 Amphitheatre Parkway, Mountain View, CA"
+                    
+
+                Label:
+                    id: errormessage
+                    opacity: 0
+                    size_hint:(.4, None)
+                    multiline:True
+                    pos_hint:{"center_x": 1.5, "center_y": 0.5}
+                    font_size: '35sp'
+                    font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                    canvas.before:
+                        Color:
+                            rgba: 245/255, 211/255, 119/255, 1   
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                BoxLayout:
+                    id: status 
+                    orientation: "vertical"   
+                    size_hint: .3, None
+                    pos_hint: {"center_x": .5}
+                    opacity: 0
+                    Label:
+                        id: indicator
+                        text: "Loading Links..."
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        font_size: '35sp'
+                        canvas.before:
+                            Color:
+                                rgba: 245/255, 211/255, 119/255, 1  
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                    ProgressBar:
+                        opacity: 1
+                        id: pb
+                        max: 10
+                        
+                BoxLayout:
+                    size_hint: .15, .07
+                    pos_hint: {'right': 1}
+                    canvas.before:
+                        Color:
+                            rgba: 245/255, 211/255, 119/255, 1  
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    BoxLayout:
+                        Label:
+                            id: label_1
+                            text: "Discounts"
+                            font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                            font_size: '35sp'
+                            halign: 'center'  # Horizontal alignment (e.g., 'center', 'left', 'right')
+                            valign: 'middle'
+                            multiline: True
+                            size_hint: 1.2, 1
+                        CheckBox:
+                            id: class_1
+                            on_active: root.trigger("D", self.active)
+                            background_checkbox_normal: "Food Insecuirty App\FinalWork\Open.png"
+                            background_checkbox_down: "Food Insecuirty App\FinalWork\Close.png"
+                    BoxLayout
+                        Label:
+                            id: label_2
+                            text: "Food Facilities"
+                            font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                            font_size: '35sp'
+                            halign: 'center'  # Horizontal alignment (e.g., 'center', 'left', 'right')
+                            valign: 'middle'
+                            multiline: True
+                            size_hint: 1.2, 1
+                        CheckBox:
+                            id: class_2
+                            on_active: root.trigger( "F", self.active)
+                            background_checkbox_normal: "Food Insecuirty App\FinalWork\Open.png"
+                            background_checkbox_down: "Food Insecuirty App\FinalWork\Close.png"
+                BoxLayout:
+                    id: info
+                    orientation: "vertical"
+                    pos_hint: {'y': .07,'right': 1}
+                    size_hint:  (.15, .8) 
+                    canvas.before:
+                        Color:
+                            rgba: 96/255, 96/255, 96/255, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+
+                BoxLayout:
+                    id: control_panel
+                    opacity: 1 
+                    orientation: "horizontal"
+                    size_hint:(1, .2)
+                    pos_hint:{"top": 1} 
+                    canvas.before:
+                        Color:
+                            rgba: 245/255, 211/255, 119/255, 1   
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                    BoxLayout:
+                        size_hint: 4, 1
+                        orientation: "vertical"
+                        BoxLayout:
+                            orientation:"horizontal"
+                            Button:
+                                size_hint: (.3, .5)
+                                text: "Back"
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                halign: "center"
+                                font_size: '35sp'
+                                on_press: root.menu_selector("screen1")
+                            Label:
+                                size_hint: (2, 1)
+                                font_size: '35sp'  # Set the text size to match the Label's size
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                halign: 'center'  # Horizontal alignment (e.g., 'center', 'left', 'right')
+                                valign: 'middle'
+                                multiline: True
+                                text: "Choose any type of establishment you would like to search"
+                            Button
+                                size_hint: (.5, .5)
+                                text: "Search"
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                font_size: "40sp"
+                                on_press: root.do_action()
+                        BoxLayout:
+                            orientation:"horizontal"
+                            Label:
+                                text: "Restaurants"
+                                font_size: '35sp'  # Set the text size to match the Label's size
+                                halign: 'center'  # Horizontal alignment (e.g., 'center', 'left', 'right')
+                                valign: 'middle'
+                                multiline: True
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                            CheckBox:
+                                id: resturarnt_checkbox
+                                background_checkbox_normal: "Food Insecuirty App\FinalWork\Open.png"
+                                background_checkbox_down: "Food Insecuirty App\FinalWork\Close.png"
+                            Label:
+                                text: "Clothing Store"
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                font_size: '35sp'  # Set the text size to match the Label's size
+                                halign: 'center'  # Horizontal alignment (e.g., 'center', 'left', 'right')
+                                valign: 'middle'
+                                multiline: True
+                            CheckBox:
+                                id: clothes_checkbox
+                                background_checkbox_normal: "Food Insecuirty App\FinalWork\Open.png"
+                                background_checkbox_down: "Food Insecuirty App\FinalWork\Close.png"
+                            Label:
+                                text: "Religious Centers"
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                font_size: '35sp'  # Set the text size to match the Label's size
+                                halign: 'center'  # Horizontal alignment (e.g., 'center', 'left', 'right')
+                                valign: 'middle'
+                                multiline: True
+                            CheckBox:
+                                id: church
+                                background_checkbox_normal: "Food Insecuirty App\FinalWork\Open.png"
+                                background_checkbox_down: "Food Insecuirty App\FinalWork\Close.png"
+                            Label:
+                                text: "Social Facilities"
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                font_size: '35sp'   # Set the text size to match the Label's size
+                                halign: 'center'  # Horizontal alignment (e.g., 'center', 'left', 'right')
+                                valign: 'middle'
+                                multiline: True
+                            CheckBox:
+                                id: social_facility
+                                background_checkbox_normal: "Food Insecuirty App\FinalWork\Open.png"
+                                background_checkbox_down: "Food Insecuirty App\FinalWork\Close.png"
+                            Label:
+                                text: "Supermarket"
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                font_size: '35sp'  # Set the text size to match the Label's size
+                                halign: 'center'  # Horizontal alignment (e.g., 'center', 'left', 'right')
+                                valign: 'middle'
+                                multiline: True
+                            CheckBox:
+                                id: retail_checkbox
+                                background_checkbox_normal: "Food Insecuirty App\FinalWork\Open.png"
+                                background_checkbox_down: "Food Insecuirty App\FinalWork\Close.png"
+                    BoxLayout:
+                        orientation: "vertical"
+                        Button:
+                            id: close
+                            size_hint: .1, .2
+                            pos_hint: {"x": .9}
+                            text: "X"
+                            on_press:root.close_window()
+                        BoxLayout:
+                            orientation: "horizontal"
+                            
+                            Label:
+                                text: "Distance:"
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                font_size: "35sp"
+                            Label:
+                                id: distance_picker
+                                text: "100"
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                font_size: "35sp"
+                                halign: "right"
+                            Label:
+                                text: "meters"
+                                halign: "left"
+                                font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                                font_size: "30sp"
+                            
+                        Slider:
+                            id: range
+                            min:100
+                            max:5000
+                            cursor_image: "Food Insecuirty App\FinalWork\slider.png"
+                            value:100
+                            on_touch_up : root.slider(self.value)
+                    
+                Button:
+                    id: opener
+                    opacity: 0
+                    pos_hint:{"top": 1, "center_x": .5}
+                    size_hint: (.05, .05)
+                    text: "v"
+                    on_press: root.open_window()
+
+        Screen: 
+            name: "screen4"
+            FloatLayout:
+                canvas.before:
+                    Color:
+                        rgba: 245/255, 211/255, 119/255, 1 
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Button:
+                    size_hint: (.05,.08)
+                    pos_hint: {"x": 0, "y": .92}
+                    text: "Back"
+                    font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                    halign: "center"
+                    font_size:'30sp'
+                    on_press: root.menu_selector("screen1")
+                BoxLayout:
+                    orientation: "vertical"
+                    size:(1,.8)
+                    pos_hint: {"center_x": .5, "center_y": .5}
+                    
+                
+
+                    Label:
+       
+                        font_size:'70sp'
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        text: "App"
+
+                    Label:
+
+                        font_size:'40sp'
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        text: "With this app you can find data on discounts of nearby selected busineses and meal facilities."
+
+                    Label:
+             
+                        font_size:'40sp'
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        text: "Just hit on of your needs in the checkbox on the bottom left and then click on one of the designated facilities you would like to search."
+                    Label:
+             
+                        font_size:'40sp'
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        text: "If you are having trouble finding places, adjust your distance and enter in a precise location."
+
+
+                    Label:
+      
+                        font_size:'70sp'
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        text: "Resources"
+
+                    Label:
+                        id: size_data 
+                        font_size:'40sp'
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        text: "To find organizations to help you get a meal: Call 211. It is a hotline created by the United States Government"
+                    Label:
+    
+                        font_size:'40sp'
+                        font_name: "Food Insecuirty App\FinalWork\Twinkle.ttf"
+                        text: "USDA National Hunger Hotline: 1-866-3-HUNGRY or 1-877-8-HAMBRE"
+
+        
+                
+        
